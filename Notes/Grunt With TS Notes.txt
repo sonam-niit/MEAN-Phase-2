@@ -1,0 +1,75 @@
+Create a folder named "typescriptwithGrunt"
+
+open that folder using VSCode
+
+open terminal in VSCode
+
+while working with Node JS --> Project must have package.json file which provides the details of all installed packages in your project.
+
+How to create?
+
+> npm init
+
+it will ask you some question if you want skip then just press enter.
+(whatever you see in bracket it will take it as default value)
+
+once all answers done- it will say is that ok? just press enter and you can see package.json file created successfully.
+
+(if you install any packages locally you can see all dependencies in package.json file)
+Let's Install Typescript Locally
+>npm install typescript --save-dev
+Let's Install Grunt
+>npm install grunt --save-dev
+
+Let's Install Grunt CLI (command Line interface)
+>npm install grunt-cli -g 
+>npm install grunt-ts (install Grunt TS)
+
+create Gruntfile.js in your project
+_____________________________________________________
+
+
+module.exports =function(grunt){
+    grunt.initConfig({
+        ts: {
+            default:{
+                src:["**/*.ts", "!node_modules/**/*.ts"]
+            }
+        }
+    });
+    grunt.loadNpmTasks("grunt-ts");
+    grunt.registerTask("abc",["ts"]); // abc is just a task name
+    //suppose you have multiple task and you want to run only the ts task then you can just
+    //execute the command grunt and task name
+}
+
+__________________________________________________________________________________________________
+
+if you want to check grunt version: grunt --version
+
+after that create any .ts file (demo.ts)
+______________________________________________________________________
+
+function add(a:number,b:number) : number{
+    return a+b;
+}
+function mul(a:number,b:number) : number{
+    return a*b;
+}
+
+console.log("Addition is "+add(23,12));
+console.log("Multiplication is "+mul(2,3));
+_________________________________________________________________________________________
+
+
+To compile all .ts to .js execute command grunt taskname (grunt abc)
+
+You can see the compiled files in folder
+
+You can run the same with:  node demo.js
+
+
+
+
+
+

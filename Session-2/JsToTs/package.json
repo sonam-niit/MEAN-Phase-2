@@ -1,0 +1,15 @@
+{
+  "name": "jstots",
+  "version": "1.0.0",
+  "description": "migration from js to ts",
+  "main": "index.js",
+  "scripts": {
+    "tsc:w":"tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sonam soni",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  }
+}

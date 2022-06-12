@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+
+    "jsx": "react",                                /* Specify what JSX code is generated. */
+    "module": "commonjs",                                /* Specify what module code is generated. */
+    "sourceMap": true,                                /* Create source map files for emitted JavaScript files. */                       
+  },
+  "exclude": ["node_modules"]
+}

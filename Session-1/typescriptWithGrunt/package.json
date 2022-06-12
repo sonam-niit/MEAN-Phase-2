@@ -1,0 +1,18 @@
+{
+  "name": "typescriptwithgrunt",
+  "version": "1.0.0",
+  "description": "This is my first configuration of TS with Grunt",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sonam Soni",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.5.3",
+    "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "grunt-ts": "^6.0.0-beta.22"
+  }
+}

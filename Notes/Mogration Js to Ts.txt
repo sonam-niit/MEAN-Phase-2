@@ -1,0 +1,55 @@
+Migration from Javascript to TypeSript
+____________________________________________________
+
+1.create folder named JsToTs and open same with VSC.
+
+2.create tsconfi.json file: tsc --init
+
+3.open file and edit as mentioned below.
+
+{
+  "compilerOptions": {
+
+    "jsx": "react",                               
+    "module": "commonjs",                                
+    "sourceMap": true,                                
+  },
+  "exclude": ["node_modules"]
+}
+
+4. create Package.json file
+	npm init
+
+	enter the values as required and create the same
+5. install required packages
+	npm install typescript --save-dev
+
+6. open poackage.json file and edit script
+
+	"tsc:w":"tsc -w",
+
+7. create any ts file: created src --> demo.ts
+	
+class Name
+{
+    first_name:string;
+    last_name:string;
+    constructor(fname:string,lname:string)
+    {
+        this.first_name=fname;
+        this.last_name=lname;
+    }
+    display():string{
+        var fullname:string= this.first_name+" "+this.last_name;
+        return fullname;
+    }
+}
+var obj = new Name("sonam","soni");
+console.log(obj.display());
+________________________________________________________________________
+
+save that and run in watch mode: tsc -w
+
+it will convert ts to js and everytime if you delete .ts file it will detect and you can also change your js - to ts directly by changing the extention.
+
+Once that is converted automatically the watch mode again change your .ts file to .js directly.
