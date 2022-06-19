@@ -1,0 +1,26 @@
+You already installed Node
+
+node -v
+
+npm -v
+
+let's install Angular
+
+>npm install -g @angular/cli
+
+>ng version (check Angular Version)
+
+(if you get any question they types yes)
+
+Let's create Angular App (Move to proper folder where you want to create app)
+
+>ng new myapp (myapp is the name of my application, you can give any name)
+
+	it will ASK you for routing? type y press enter
+	for css selection >css is already selected just press enter
+
+it will start creating your project. (it may take some time)
+
+>cd myapp
+
+>ng serve (run your application)
