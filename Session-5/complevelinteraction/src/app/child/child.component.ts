@@ -5,7 +5,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.css'],
   inputs:['pdata'],
-  outputs:['cevent']
+  outputs:['cevent'] 
 })
 export class ChildComponent implements OnInit {
 
