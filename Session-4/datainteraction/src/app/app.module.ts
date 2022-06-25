@@ -1,22 +1,20 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { MylibComponent, MylibModule } from 'projects/mylib/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { DataintComponent } from './dataint/dataint.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    FooterComponent
+    DataintComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MylibModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

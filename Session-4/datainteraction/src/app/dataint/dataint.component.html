@@ -1,0 +1,14 @@
+<h1>Data Interaction Component</h1>
+<h3>Property Binding</h3>
+<a [href]="url" target="_blank">Google</a>
+<br>
+<img *ngIf="flag" [src]="imgurl" [height]="h" [width]="w">
+<h3>Interpolation</h3>
+<p>{{message}}</p>
+<h3>Event Binding</h3>
+<button (click)="show()">Click Here to Show Image</button>
+<h3>Two Way Binding</h3>
+<input [(ngModel)]="username">
+<p>
+    Welcome {{username}}
+</p>

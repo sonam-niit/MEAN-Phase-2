@@ -1,0 +1,135 @@
+Componet Level Interaction
+-------------------------------------------------
+
+App -- is the parent component
+
+ng g c child --> child is the child component
+
+we want to communicate between this 2 components
+____________________________________________________________________
+
+Parent to child
+-------------------------------------------------------------------
+app.component.html
+
+<div>
+<h3>Parent Coponent</h3>
+Type your message: <input type="text" #ptext (keyup)="0"/>
+</div>
+
+<app-child [pdata]="ptext.value"></app-child>
+
+child.component.ts
+__________________________________________
+declared input 
+
+@Component({
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css'],
+  inputs:['pdata'],
+})
+
+
+declared pdata variable
+
+export class ChildComponent implements OnInit {
+
+  constructor() { }
+  pdata:string="";
+  ngOnInit(): void {
+  }
+
+__________________________________________________________________________
+
+display the data in child.component.html
+
+<div>
+<h3>This is Child Component</h3>
+<p>Value coming from Parent component {{pdata}}</p>
+</div>
+
+======================================================================
+
+Child to Parent
+
+child.component.html (added input type=text to pass data )
+
+<div>
+<h3>This is Child Component</h3>
+Enter Any Text:<input type="text" #cdata (keyup)="onchange(cdata.value)" />
+<p>Value coming from Parent component {{pdata}}</p>
+</div>
+
+here onchange method used when keyup event executed
+
+let's implement this method in child.component.ts
+----------------------------------------------------------------------
+
+import { Component, EventEmitter, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css'],
+  inputs:['pdata'],
+  outputs:['cevent'] //cevent is the eventemmiter will help you to get emited data from child to parent
+})
+export class ChildComponent implements OnInit {
+
+  constructor() { }
+  pdata:string="";
+  ngOnInit(): void {
+  }
+  cevent= new EventEmitter(); //cevent object created, import EventEmiiter from Angular Core
+  onchange(value:string){
+    this.cevent.emit(value) //onchange method emit the data which received in value variable
+  }
+}
+
+________________________________________________________________________________________________
+
+Let's get the emitted data in app component
+
+app.component.ts (declare cdata named variable)
+
+export class AppComponent {
+  title = 'complevelinteraction';
+  cdata:string="";
+}
+_____________________________________________________________________________________________
+
+get the data in cdata variable with the help of cevent object
+
+app.component.html
+
+<div>
+<h3>Parent Coponent</h3>
+<p>Value coming from Child Component: {{cdata}}</p>
+Type your message: <input type="text" #ptext (keyup)="0"/>
+</div>
+
+<app-child [pdata]="ptext.value" (cevent)="cdata=$event"></app-child>
+<!-- when cevent executed the output given by cevent stored in cdata variable-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
