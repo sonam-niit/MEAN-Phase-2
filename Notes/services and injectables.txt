@@ -1,0 +1,99 @@
+Let's understand the concepts on services and injectables
+-----------------------------------------------------------------
+
+create service using ng g s servicename command
+>ng g s user
+
+open user.service.ts file and add below mentioned code
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  constructor() { }
+
+  products=[
+    {"id":1,"name":"pencil","price":12.10,"available":"23-06-2022","rating":4.5},
+    {"id":2,"name":"Pen","price":15.60,"available":"24-06-2022","rating":4.6},
+    {"id":3,"name":"scale","price":20.10,"available":"23-06-2022","rating":4.5},
+    {"id":4,"name":"Eraser","price":2.5,"available":"23-06-2022","rating":4.3}
+  ]
+
+  getProducts(){
+    return this.products;
+  }
+}
+_________________________________________________________________________________________
+
+Here we don't have any api so I just created a dummy data in service only, one method create which returns the list of products.
+
+Let's import this in app.module.ts in providers
+
+ providers: [UserService],
+
+_______________________________________________________________________________________________
+
+Let's inject this service dependency in Component
+
+create component: ng g c user
+
+open user.component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
+})
+export class UserComponent implements OnInit {
+
+  constructor(private service:UserService) { }
+
+  products:any[]=[];
+  ngOnInit(): void {
+    this.products= this.service.getProducts();
+  }
+
+}
+_______________________________________________________________________________________________
+
+Here service injected through constructor and when components loads gOnInit method is executed and it stores the product data in products variable which we can displat in 
+
+user.component.html file
+
+<h1>User Component</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Available</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.available}}</td>
+            <td>{{p.rating}}</td>
+        </tr>
+    </tbody>
+</table>
+_________________________________________________________________________________________
+
+to display the data structral directive (*ngFor) used to iterate the data one by one
+and to display them interpolation used ({{ }})
+
+now to display this component as output added its selector in app.component.html
+
+<app-user></app-user>
+
+Save all files and check the output

@@ -1,0 +1,21 @@
+<h1>User Component</h1>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Available</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.price}}</td>
+            <td>{{p.available}}</td>
+            <td>{{p.rating}}</td>
+        </tr>
+    </tbody>
+</table>
