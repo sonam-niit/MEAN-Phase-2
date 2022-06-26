@@ -1,0 +1,129 @@
+What ia PWA?
+
+It is a web app which will help you to implement modern web capabilities in your application.
+
+-> install it as mobile Home screen
+-> access it when you are offline
+-> acess the camera facility
+-> send the push notifications
+-> implement background synchronization
+
+In angular there is simple command using that you can just create angular app as PWA.
+
+what if I want to create this using Simple HTML, CSS and Javascript
+
+--> index.html page (main home page of my application)
+--> style.css (styling you page)
+--> script.js (include scriping code in your pages)
+
+(My normal website created)
+
+to make it PWA
+------------------------------
+1. Web App Manifest
+--> simple json file which informs your browser that your website is the web app.
+--> it must has the insstructions like how to behave when this is installed in user's device.
+
+** how to create that? **
+
+manifest.json
+------------------------------------------------------------
+{
+	"name":"myapp",
+	"short_name":"demo",
+	"start_url":"index.html",
+	"background_color":"#df5625",
+	"orientation":"portrait-primary",
+	"icons":[
+			{"src":"xyz/images/test1.png","type":"image/png","sizes":"72x72"},
+			{"src":"xyz/images/test1.png","type":"image/png","sizes":"192x192"}
+		]
+
+}
+
+____________________________________________________________________________________________________
+
+Service Worker
+-------------------------------------
+PWA works only with https why because service worker can handle https request so security is required.
+
+what is service worker? 
+-->it is a script which runs in your browser background as a seprate thread.
+--> It runs in diffrent place which is totally seprate from your webpage.
+--> with help of this service worker you can manage cache and your page will work offline.
+
+How to create?
+
+create serviceworker.js
+
+const staticData="myapp"
+const assets=[
+		"/",
+		"css/style.css",
+		"js/script.js",
+		"images/test1.png",
+		"images/test2.png",
+
+	     ]
+
+self.addEventListener("install",installEvent=>{
+			installEvent.waitUntil(
+				caches.open(myapp).then(cache=>{cache.addAll(assets)}
+			)
+		})
+
+
+self.addEventListener("fetch",fetchEvent=>{
+			fetchEvent.respondWith(
+			caches.metch(fetchEvent.request).then(res=>return res || fetch (fetchEvent.request)}
+
+		)
+
+		});
+
+________________________________________________________________________________________________
+
+Register it in your javascript code
+
+script.js
+
+if("serviceworker" in navigation){
+
+	window.addEventListener("load",function(){
+		navigator.register("/serviceworker.js").
+		then(res=>console.log("service worker registered").
+		catch(err=> console.log("error occured",err)
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
