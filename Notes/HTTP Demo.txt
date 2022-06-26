@@ -1,0 +1,34 @@
+1. create angular application: ng new httpdemo
+2. import httoclientmodule in app.module.ts
+   import {HttpClientModule} from '@angular/core/http';
+
+   add in the list of imports
+
+3. create component ng g c userlist
+4. right click on app and create user.ts file
+include class code in that
+5. Here you will see intialization error so open tsconfig.json file and
+add strictPropertyInitialization=false
+6. create service ng g s user
+
+open userService.ts
+
+inject http dependency in constructor
+
+create the baseurl of you api link
+
+create method getAllUser as mentioned.
+7.open useList component.ts file and add service dependency and call the method of service from
+ngOnInit method
+get the data in users object which you can display on uselist.component.ts
+
+8. to display the data create route path in app.routing.module.ts
+9. create routerlink in app.component.html
+
+10. to display individual data create ng g c userdetails
+11. update path in routing
+12. create link in userlist.component.html 
+13. update code in userdetail.component.ts
+14. display details in userdetail.component.html
+
+15. if you wnat to display other details like address then you have to create seprate address.ts file and insert address object in user.ts file.
