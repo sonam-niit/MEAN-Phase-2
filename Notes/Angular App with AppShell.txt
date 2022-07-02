@@ -1,0 +1,23 @@
+create any angular application
+
+add appshelll in that
+
+>ng generate app-shell
+
+you can see app-shell available in app folder also, see updated files
+
+to run app with app-shell
+
+>ng run appname:app-shell (ng run ang-pwa:app-shell)
+
+or 
+
+>ng build 
+
+run application on server
+
+>http-server -o
+
+you can right click -> inspect element --> performance --> click on reload button to see the timings taken by application to load
+
+(here you can not see the actual reflection as we have just loaded application on local server)
