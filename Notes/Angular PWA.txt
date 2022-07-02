@@ -1,0 +1,60 @@
+Angular PWA
+-----------------------------------------
+
+create angular app
+>ng new angpwa
+
+create some components in that
+>ng g c home
+>ng g c about
+>ng g c contact
+
+update files of this components
+
+once it is updated update routing-module.ts file for create routes
+
+create navigation in app.component.html
+(don't forget to include <router-outlet>)
+
+once its is done now let's make our application PWA
+----------------------------------------------------------------------------
+
+>ng add @angular/pwa 
+ it will ask you do you want to proceed? say y and it will install PWA in your angular app
+ once it is completed you can see the created and updated files list in console.
+
+to run this application on server we need to install server
+>npm install -g http-server
+
+once it is installed let's build the application to run in server
+
+>ng build
+
+(when build completes you can see dist folder created in your application)
+
+so now if you want to run your build application in server
+
+move to that folder
+>cd dist/angpwa
+
+run on server
+>http-server -o
+
+you can see the output coming in localhost:8080 or 127.0.0.1:8080 (127.0.0.1 is the ip for localhost)
+
+you can see one icon in url like install app --> when you install it you can see the desktop icon added to your descktop
+
+click on the same and you can see your application running as a app.
+
+
+
+
+
+
+
+
+
+
+
+
+
