@@ -1,0 +1,100 @@
+create any angular application
+
+>ng new pushnotification --routing
+
+open folder in VSC
+
+install ngx-push-notifications using below command
+
+>npm install ngx-push-notifications --save
+
+-------------------------------------------------------------------------
+register notification service in app.module.ts
+
+import { PushNotificationService } from 'ngx-push-notifications';
+
+and add it in list of providers
+
+ providers: [PushNotificationService],
+
+_____________________________________________________________________________________________
+
+Let's use Push notification
+
+app.component.ts and inject the pushNotificationService dependency in constructor and use them in ngOnInit method to get the notification permission
+
+
+ constructor(private service: PushNotificationService){}
+
+  ngOnInit(){
+      this.service.requestPermission();
+      //requst user for permission
+  }
+
+
+_______________________________________________________________________________________________
+
+create function to work with Push Notification
+
+//to work with push notification let's create a fuction
+  myFunction(){
+    const title="Offer";
+
+    const option= new PushNotificationOptions(); //create object
+
+    option.body="check out our new Offers for the MEAN stack";
+
+    this.service.create(title,option)//create notification
+    .subscribe((notif)=>{
+      if(notif.event.type==="show")
+      {
+        console.log('On Show');
+        setTimeout(()=>{notif.notification.close();},3000)
+      }
+
+      if(notif.event.click==="click")
+      {
+        console.log('user clicked on notification');
+        notif.notification.close();
+      }
+
+      if(notif.event.type==='close')
+      {
+        console.log("Notification closed")
+      }
+    },
+    err=>{console.log("Error Occured ",err)})
+  }
+
+_____________________________________________________________________________________________________
+
+to work with this fuction, create button in app.component.html and call the fuction
+
+<h1>Push Notification Demo</h1>
+<h3>First Notification</h3>
+<button (click)="myFunction()">Send Notification</button>
+
+_____________________________________________________________________________________________________
+
+to solve the compile time error with push notification.
+
+open tsconfig.json file
+
+"paths": { "@angular/*": ["./node_modules/@angular/*"] },
+
+(include this line in compiler option and try to run your application)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

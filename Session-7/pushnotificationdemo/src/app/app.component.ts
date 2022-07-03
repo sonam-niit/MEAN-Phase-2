@@ -15,12 +15,13 @@ export class AppComponent {
       this.service.requestPermission();
       //requst user for permission
   }
+  //to work with push notification let's create a fuction
   myFunction(){
-    const title="Hello";
+    const title="Offer";
 
-    const option= new PushNotificationOptions();
+    const option= new PushNotificationOptions(); //create object
 
-    option.body="Native Push Notification";
+    option.body="check out our new Offers for the MEAN stack";
 
     this.service.create(title,option)
     .subscribe((notif)=>{
