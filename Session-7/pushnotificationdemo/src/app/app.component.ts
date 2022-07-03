@@ -23,7 +23,7 @@ export class AppComponent {
 
     option.body="check out our new Offers for the MEAN stack";
 
-    this.service.create(title,option)
+    this.service.create(title,option)//create notification
     .subscribe((notif)=>{
       if(notif.event.type==="show")
       {
