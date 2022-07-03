@@ -1,0 +1,96 @@
+To create Offline page with service worker
+---------------------------------------------------------------
+
+create any angular application
+
+make it PWA
+
+create service-worker.js file inside src folder
+-----------------------------------------------------------------
+
+const OFFLINE_VERSION=1;
+const CACHE_NAME = "offline";
+//you can customize you url from here
+const OFFLINE_URL= "index.html";
+
+self.addEventListener("install",(event)=>{
+    event.waitUntil((async()=>{
+        const cache = await caches.open(CACHE_NAME);
+        await cache.add(new Request(OFFLINE_URL,{cache:'reload'}))
+    })());
+});
+
+self.addEventListener("activate",(event)=>{
+    event.waitUntil((async()=>{
+        if('navigationPreload' in self.registration){
+            await self.registration.navigationPreload.enable();
+        }
+    })());
+
+    self.clients.claim();
+})
+
+self.addEventListener("fetch",(event)=>{
+    if(event.request.mode==='navigate'){
+        event.respondWith((async()=>{
+            try{
+                const preloadResponse = await event.preloadResponse;
+                if(preloadResponse){
+                    return preloadResponse;
+                }
+                const networkResponse = await fetch(event.request);
+                return networkResponse;
+            }
+            catch(error){
+                console.log("Error while fetching offline page returning",error);
+                const cache= await caches.open(CACHE_NAME);
+                const catcheResponse=await cache.match(OFFLINE_URL);
+                return catcheResponse;
+            }
+        })())
+    }
+})
+
+_________________________________________________________________________________
+
+register your service worker in index.html file
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Pushnotificationdemo</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+</head>
+<body>
+  <app-root></app-root>
+  <script>
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('service-worker.js')
+      .then((registeration)=>{
+        console.log("Service Worker registartion succeeded",registeration);
+      });
+    }
+    else{
+      console.log("Service workers are not supported Here");
+    }
+  </script>
+  <!--<noscript>Please enable JavaScript to continue using this application.</noscript>-->
+</body>
+</html>
+
+_____________________________________________________________________________
+
+build your application by build command
+
+>ng build
+
+after build copy and add your service-worker.js file in dist/appname folder
+
+try to run your application on http-server -o
+
+so you can see your service worker registered in console.
